@@ -1,16 +1,229 @@
-# gg
+# 📋 인원 체크 관리 앱 (NumberCheck)
 
-A new Flutter project.
+> 모임·단체의 인원을 빠르고 편리하게 파악하기 위해 만들어진 Flutter 기반 인원 관리 애플리케이션입니다.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🎯 제작 배경
 
-A few resources to get you started if this is your first Flutter project:
+동아리, 동호회, 종교 단체, 소규모 조직 등 **정기적으로 인원을 확인해야 하는 모든 모임**에서 매번 종이 명단을 뒤져가며 인원을 파악하는 불편함을 해소하고자 제작하였습니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+이 앱 하나로 인원 등록부터 월별 분류, 검색, 내보내기까지 **인원 관리의 전 과정**을 간편하게 처리할 수 있습니다.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## ✨ 주요 기능
+
+### 🔐 보안 잠금
+- 앱 실행 시 **비밀번호 인증** 화면이 먼저 표시됩니다.
+- 초기 비밀번호는 `1234`이며, 설정 화면에서 언제든지 변경 가능합니다.
+- 비밀번호는 기기 로컬 저장소에 안전하게 보관됩니다.
+
+### 👥 인원 명단 관리
+- **이름 / 나이 / 소속** 정보를 입력하여 인원을 등록합니다.
+- 등록 시 **년도 및 월**을 지정해 월별로 인원을 분류합니다.
+- 명단은 가나다순으로 자동 정렬됩니다.
+- 각 인원 카드에는 순번, 이름, 소속, 등록 일시가 표시됩니다.
+
+### 🗂️ 월별 필터링
+- 헤더의 **월 탭**을 클릭하거나 마우스 휠로 스크롤하여 원하는 달의 인원을 즉시 조회합니다.
+- 좌우 화살표로 **조회 년도**를 자유롭게 이동할 수 있습니다.
+
+### 🔍 실시간 검색
+- **이름 또는 소속** 키워드로 전체 명단을 실시간 검색합니다.
+- 검색 중에는 월별 필터가 해제되어 전체 명단에서 결과를 보여줍니다.
+
+### ✏️ 정보 수정
+- 등록된 인원 카드를 탭하면 **상세 정보 수정** 화면으로 이동합니다.
+- 이름, 나이, 소속, 상세 내용(메모), 보관 년/월을 모두 수정할 수 있습니다.
+
+### 🗑️ 휴지통 (소프트 삭제)
+- 인원 삭제 시 즉시 영구 삭제되지 않고 **휴지통**으로 이동합니다.
+- 휴지통에서 **복구** 또는 **영구 삭제**를 선택할 수 있습니다.
+- 명단 화면 상단의 휴지통 아이콘에 삭제된 인원 수가 배지로 표시됩니다.
+
+### 📤 데이터 내보내기 / 불러오기
+- **CSV 내보내기**: 전체 명단을 CSV 파일(한글/엑셀 호환)로 저장합니다. UTF-8 BOM을 포함하여 한글이 깨지지 않습니다.
+- **JSON 불러오기**: 이전에 저장한 JSON 형식의 명단 파일을 불러와 복원합니다.
+
+### 💾 자동 저장
+- 모든 데이터는 `shared_preferences`를 통해 **기기(브라우저) 로컬 스토리지에 자동 저장**됩니다.
+- 앱을 종료하고 다시 실행해도 데이터가 유지됩니다.
+
+---
+
+## 📱 화면 구성
+
+| 화면 | 설명 |
+| --- | --- |
+| **잠금 화면** | 비밀번호 입력 및 앱 진입 |
+| **인원 명단** | 월별 인원 목록 조회 및 검색 |
+| **정보 등록** | 새 인원 추가 입력 폼 |
+| **정보 수정** | 기존 인원 정보 상세 편집 |
+| **설정** | 비밀번호 변경, 데이터 내보내기/불러오기 |
+| **휴지통** | 삭제된 인원 목록, 복구 및 영구 삭제 |
+
+---
+
+## 🚀 사용법
+
+### 1. 앱 시작
+```
+앱 실행 → 비밀번호 입력 (초기값: 1234) → 인원 명단 화면
+```
+
+### 2. 인원 등록
+```
+인원 명단 화면 → 우측 하단 (+) 버튼 → 이름/나이/소속 입력 → 년도·월 선택 → 저장
+```
+
+### 3. 인원 조회
+```
+월 탭 클릭 또는 마우스 휠 스크롤로 월 선택 → 해당 월 인원 자동 표시
+좌우 화살표로 년도 변경 가능
+```
+
+### 4. 검색
+```
+검색창에 이름 또는 소속 입력 → 실시간 필터링
+```
+
+### 5. 인원 수정 / 삭제
+```
+인원 카드 클릭 → 수정 화면 → 정보 수정 후 저장
+수정 화면 상단 휴지통 아이콘 → 휴지통으로 이동
+```
+
+### 6. 데이터 내보내기
+```
+인원 명단 → 설정 아이콘 → 한글/엑셀 파일 버튼 → CSV 파일 다운로드
+```
+
+### 7. 비밀번호 변경
+```
+인원 명단 → 설정 아이콘 → 현재·새·확인 비밀번호 입력 → 비밀번호 변경 완료
+```
+
+---
+
+## 🛠️ 기술 스택
+
+### 프레임워크 & 언어
+
+| 항목 | 내용 |
+| --- | --- |
+| **프레임워크** | [Flutter](https://flutter.dev/) 3.x |
+| **언어** | [Dart](https://dart.dev/) 3.5.2+ |
+| **아키텍처** | StatefulWidget 기반 단일 파일 구조 |
+
+### 주요 패키지 (pub.dev)
+
+| 패키지 | 버전 | 용도 |
+| --- | --- | --- |
+| `shared_preferences` | ^2.5.3 | 데이터 로컬 영구 저장 (비밀번호, 인원 명단) |
+| `intl` | ^0.20.2 | 날짜/시간 포맷 처리 |
+| `lucide_icons` | ^0.257.0 | UI 아이콘 라이브러리 |
+| `file_picker` | ^11.0.2 | JSON 파일 불러오기 |
+| `file_saver` | ^0.2.14 | CSV 파일 내보내기 저장 |
+
+### 지원 플랫폼
+
+| 플랫폼 | 지원 여부 |
+| --- | --- |
+| Android | ✅ |
+| iOS | ✅ |
+| Web | ✅ |
+| Windows | ✅ |
+| macOS | ✅ |
+| Linux | ✅ |
+
+### UI / UX
+
+- **Material Design 3** 기반 디자인
+- `AnimatedSwitcher` + `FadeTransition` + `SlideTransition` 을 활용한 화면 전환 애니메이션
+- 마우스 드래그 및 휠 스크롤을 지원하는 수평 월 선택 슬라이더
+- 인디고(Indigo) 컬러 테마의 깔끔한 카드형 레이아웃
+
+---
+
+## 📂 프로젝트 구조
+
+```
+numbercheck/
+├── lib/
+│   ├── main.dart        # 앱 진입점 및 전체 UI / 로직
+│   └── types.dart       # 데이터 모델 (Personnel, Screen enum)
+├── android/             # Android 플랫폼 설정
+├── ios/                 # iOS 플랫폼 설정
+├── web/                 # Web 플랫폼 설정
+├── windows/             # Windows 플랫폼 설정
+├── pubspec.yaml         # 패키지 의존성 및 앱 설정
+└── reference/           # 기존 React 기반 레퍼런스 소스
+```
+
+---
+
+## ⚡ 빌드 및 실행
+
+### 사전 요구사항
+- Flutter SDK 3.x 이상
+- Dart SDK 3.5.2 이상
+
+### 실행 방법
+
+```bash
+# 의존성 설치
+flutter pub get
+
+# 웹으로 실행
+flutter run -d chrome
+
+# 원하는 플랫폼 선택 실행
+flutter run
+```
+
+### 빌드
+
+```bash
+# 웹 빌드
+flutter build web
+
+# Android APK 빌드
+flutter build apk
+
+# Windows 빌드
+flutter build windows
+```
+
+---
+
+## 📄 데이터 모델
+
+### Personnel (인원 정보)
+
+```dart
+class Personnel {
+  final String id;           // 고유 ID (timestamp 기반)
+  final String name;         // 이름
+  final int age;             // 나이
+  final String affiliation;  // 소속
+  final String? details;     // 상세 내용 (메모)
+  final int year;            // 보관 년도
+  final int month;           // 보관 월
+  final String createdAt;    // 등록 일시
+  final String? deletedAt;   // 삭제 일시 (null이면 활성 상태)
+}
+```
+
+---
+
+## 🔒 보안 참고사항
+
+- 비밀번호는 `shared_preferences`를 통해 기기 로컬에 **평문으로 저장**됩니다.
+- 민감한 정보를 다루는 조직에서는 별도의 암호화 처리를 권장합니다.
+
+---
+
+## 📝 라이선스
+
+이 프로젝트는 개인 및 단체 내부 사용을 목적으로 제작되었습니다.
